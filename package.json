@@ -1,0 +1,34 @@
+{
+  "name": "flair-checking-bot",
+  "version": "1.0.0-test",
+  "description": ":D",
+  "main": "index.js",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^10.0.0",
+    "pg": "^8.7.1",
+    "snoostorm": "^1.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RKevo/flair-checking-bot.git"
+  },
+  "author": "rkevo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RKevo/flair-checking-bot/issues"
+  },
+  "homepage": "https://github.com/RKevo/flair-checking-bot#readme",
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "engines": {
+    "node": "14.17.5"
+  }
+}

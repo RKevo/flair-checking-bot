@@ -1,0 +1,1 @@
+script -q /dev/null heroku logs --force-colors -t -a myApp -s app | grep --color=never web.1
