@@ -102,7 +102,7 @@ posts.on('item', async (item) => {
 
 comments.on('item', async (item) => {
 	if (item.created_utc < BOT_START) return;
-	if (item.author.name == "AutoModerator") return;
+	if (item.author.name == "AutoModerator" || item.author.name == "eazeaze") return;
 
 	log('[CMT]'.bgBlack.cyan.bold, item.author.name.italic, item.author_flair_text ? item.author_flair_text.yellow.italic : item.author_flair_text, item.body);
 
