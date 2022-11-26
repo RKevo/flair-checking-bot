@@ -10,7 +10,7 @@ require("dotenv").config();
 
 const botReplies = require("./replies.js");
 const BOT_START = Date.now() / 1000;
-const connectionString = `postgresql://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`;
+const connectionString = process.env.DATABASE_URL;
 const log = console.log;
 
 let currentFlairedCount = 0;
