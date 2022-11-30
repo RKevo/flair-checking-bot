@@ -169,35 +169,32 @@ function checkFlairAddition(ownsItemId, replyTo) {
 }
 
 function checkFlairAdditionFinal(ownsItemId, replyTo) {
-	let ownsItem = client.getComment(ownsItemId.id);
-	client.getComment(ownsItemId.parent_id).fetch().then((item) => {
-		let parentItem = item;
-		if (typeof parentItem.author_flair_text == 'string') {
-			let author = parentItem.author;
-
-			var currentdate = new Date();
-
-			console.log("flair:: ".blue, parentItem.author_flair_text);
-			remindedCount += 1;
-			currentFlairedCount += 1;
-			ownsItem.edit(`
+	try {
+		let ownsItem = client.getComment(ownsItemId.id);
+		client.getComment(ownsItemId.parent_id).fetch().then((item) => {
+			let parentItem = item;
+			if (typeof parentItem.author_flair_text == 'string') {
+				console.log("flair:: ".blue, parentItem.author_flair_text);
+				remindedCount += 1;
+				currentFlairedCount += 1;
+				ownsItem.edit(`
 			> ${replyTo} 
 			
 			***
 			^(User has flaired up! 😃) ${currentFlairedCount} / ${remindedCount} ^^|| [**[[Guide]]**](https://imgur.com/gallery/IkTAlF2)
 			`.replace(/\t/g, ''));
-		} else {
-			console.log("flair:: ".blue, parentItem.author_flair_text);
-			remindedCount += 1;
-			ownsItem.edit(`
+			} else {
+				console.log("flair:: ".blue, parentItem.author_flair_text);
+				remindedCount += 1;
+				ownsItem.edit(`
 			> ${replyTo} 
 			
 			***
 			^(User hasn't flaired up yet... 😔) ${currentFlairedCount} / ${remindedCount} ^^|| [**[[Guide]]**](https://imgur.com/gallery/IkTAlF2)
 			`.replace(/\t/g, ''));
-		}
-		log(`Current count:: ${currentFlairedCount}/${remindedCount}`);
-		pool.query(`
+			}
+			log(`Current count:: ${currentFlairedCount}/${remindedCount}`);
+			pool.query(`
 		UPDATE BotVariable
 			SET var_value = '${currentFlairedCount}'
 			WHERE var_name = 'FlairedCount';
@@ -205,9 +202,12 @@ function checkFlairAdditionFinal(ownsItemId, replyTo) {
 			SET var_value = '${remindedCount}'
 			WHERE var_name = 'FlairRemindedCount';
 		`, (err, res) => {
-			console.log(err, res);
-		})
-	});
+				console.log(err, res);
+			})
+		});
+	} catch (e) {
+		throw e;
+	}
 }
 
 process.on('exit', () => {
