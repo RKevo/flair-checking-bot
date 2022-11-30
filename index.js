@@ -123,7 +123,7 @@ comments.on('item', async (item) => {
 			setTimeout(() => checkFlairAdditionFinal(thenCmt, repUnflair[replyNo]), 2400 * 1000);
 			setTimeout(() => {
 				unflairedCheckQueue = unflairedCheckQueue.filter(x => x != checkStr)
-			}, 3600 * 1000);
+			}, 4000 * 1000);
 			log("Replied: ".magenta.bold, repUnflair[replyNo]);
 		}, (reason) => console.log(reason));
 
